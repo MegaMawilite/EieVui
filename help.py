@@ -8,13 +8,13 @@ def gethelp(h, first):
     
 **__`EieVui V1.0`__**
 ```
-Written by Mawilite#3873. Hosted on Replit.
+Written by Mawilite#3873. Hosted on Repl.it and UptimeRobot.
     
 Commands are separated in several categories.
 
     
 ~help 1 → Eeveelution imagery commands
-~help 2 → Eeveelution calendar commands
+~help 2 → Eeveelution community day commands
 ~help 3 → Miscellaneous commands
     
 ~help 4 → Feedback commands
@@ -45,16 +45,16 @@ Returns a random image from the specified eeveelution, along with a reverse imag
     return ('''
 Let's celebrate!
 
-**__`Eeveelution calendar commands`__**
+**__`Eeveelution community day commands`__**
 ```
-Commands related to eeveelution days.
+Commands related to eeveelution community days.
     
 
 ~when
- └→ Returns how many days remains before the next eeveelution day.
+ └→ Returns how many days remains before the next community day.
      
 ~calendar ~cal
- └→ Returns the list of all eeveelution days.```
+ └→ Returns the list of all eeveelution community days.```
 ''')
   elif h == "3":
     return ('''
