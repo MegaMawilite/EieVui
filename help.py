@@ -15,8 +15,9 @@ Commands are separated in several categories.
     
 ~help 1 → Eeveelution imagery commands
 ~help 2 → Eeveelution calendar commands
+~help 3 → Miscellaneous commands
     
-~help 3 → Feedback commands
+~help 4 → Feedback commands
     
 
 ...and more commands to come in the future!```
@@ -56,6 +57,18 @@ Commands related to eeveelution days.
  └→ Returns the list of all eeveelution days.```
 ''')
   elif h == "3":
+    return ('''
+Just random stuff!
+
+**__`Miscellaneous commands`__**
+```
+Commands that do not fit in any other category.
+    
+
+~hello 
+~boo```
+''')
+  elif h == "4":
     return ('''
 Any idea or issue?
 
