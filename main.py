@@ -1,6 +1,7 @@
 import discord
 import random
 import os
+from replit import db
 from pics import *
 from vees import *
 from help import *
@@ -11,6 +12,8 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 vees = vees()
+
+db["suggclear"] = 0
 
 
 def get_vee(v):
@@ -31,15 +34,23 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+  if message.author == await client.fetch_user(os.environ['MAWS_ID']):
+    if message.content == "y" and db["suggclear"] == 1:
+      db["sugs"] = "SUGGESTIONS:"
+      await message.author.send("Suggestions all cleared.")
+    db["suggclear"] = 0
+    
   if message.author.bot or (not message.content.startswith('~')) or (
       message.content.startswith('~~')):
     return
 
+  # simple misc
   if message.content == '~hello':
     await message.channel.send("Hello! :)")
   if message.content == '~boo':
     await message.channel.send(":O")
 
+  # help
   if message.content.startswith('~help'):
     try:
       help = message.content.split("~help ", 1)[1]
@@ -47,6 +58,53 @@ async def on_message(message):
       help = ""
     await message.author.send(gethelp(help, True))
 
+  # bug feedback
+  if message.content.startswith('~bug'):
+    try:
+      bugmsg = message.content.split("~bug ", 1)[1]
+      try:
+        maw = await client.fetch_user(os.environ['MAWS_ID'])
+        err = 0
+      except:
+        err = 1
+        errmsg = "Uh oh. I couldn't find my creator's ID..."
+    except:
+      err = 1
+      errmsg = "The feedback cannot be empty."
+    if err == 1:
+      await message.channel.send(errmsg)
+    else:
+      await maw.send(bugmsg)
+      await message.channel.send("Feedback sent successfully.")
+
+  # suggestion feedback
+  if message.content.startswith('~suggest'):
+    try:
+      sugs = db["sugs"]
+    except:
+      sugs = "SUGGESTIONS:"
+      db["sugs"] = sugs
+    if message.author == await client.fetch_user(os.environ['MAWS_ID']):
+      if message.content == '~suggest clear':
+        db["suggclear"] = 1
+        await message.author.send("Are you sure? (y/n)")
+      else:
+        await message.author.send(sugs)
+    else:
+      try:
+        sugmsg = message.content.split("~suggest ", 1)[1]
+        err = 0
+      except:
+        err = 1
+        errmsg = "The feedback cannot be empty."
+      if err == 1:
+        await message.channel.send(errmsg)
+      else:
+        sugs = sugs + "\n" + sugmsg
+        db["sugs"] = sugs
+        await message.channel.send("Feedback sent successfully.")
+
+  # vee pics
   for v in range(0, 9):
     if message.content == ('~' + vletter[v]) or (message.content == (
         '~' + vhalf[v]) or message.content == ('~' + vfull[v])):
