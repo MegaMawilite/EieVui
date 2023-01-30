@@ -16,7 +16,7 @@ Commands are separated in several categories.
 ~help 1 → Eeveelution imagery commands
 ~help 2 → Eeveelution calendar commands
     
-~help 3 → Bug report and suggestion commands
+~help 3 → Feedback commands
     
 
 ...and more commands to come in the future!```
@@ -59,7 +59,7 @@ Commands related to eeveelution days.
     return ('''
 Any idea or issue?
 
-**__`Bug report and suggestion commands`__**
+**__`Feedback commands`__**
 ```
 Sends a message of varying importance to the creator.
 
