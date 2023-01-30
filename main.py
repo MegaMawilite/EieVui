@@ -5,6 +5,7 @@ from replit import db
 from pics import *
 from vees import *
 from help import *
+from evdays import *
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -39,10 +40,31 @@ async def on_message(message):
       db["sugs"] = "SUGGESTIONS:"
       await message.author.send("Suggestions all cleared.")
     db["suggclear"] = 0
-    
+
   if message.author.bot or (not message.content.startswith('~')) or (
       message.content.startswith('~~')):
     return
+
+  # vee pics
+  for v in range(0, 9):
+    if message.content == ('~' + vletter[v]) or (message.content == (
+        '~' + vhalf[v]) or message.content == ('~' + vfull[v])):
+      vee = get_vee(v)
+      rl = get_reverselink(vee)
+      embed = discord.Embed(title=vcapped[v] + " " + vemoji[v],
+                            url='https://i.imgur.com/' + vee,
+                            color=vcolor[v],
+                            description="[Reverse Image Search (Bing)](" + rl +
+                            ")")
+      embed.set_image(url='https://i.imgur.com/' + vee)
+      await message.channel.send(embed=embed)
+
+  # vee days
+  if message.content == '~cal' or message.content == '~calendar':
+    cal = get_cal()
+    await message.channel.send(embed=cal)
+  if message.content == '~when':
+    await message.channel.send(get_when())
 
   # simple misc
   if message.content == '~hello':
@@ -103,20 +125,6 @@ async def on_message(message):
         sugs = sugs + "\n" + sugmsg
         db["sugs"] = sugs
         await message.channel.send("Feedback sent successfully.")
-
-  # vee pics
-  for v in range(0, 9):
-    if message.content == ('~' + vletter[v]) or (message.content == (
-        '~' + vhalf[v]) or message.content == ('~' + vfull[v])):
-      vee = get_vee(v)
-      rl = get_reverselink(vee)
-      embed = discord.Embed(title=vcapped[v] + " " + vemoji[v],
-                            url='https://i.imgur.com/' + vee,
-                            color=vcolor[v],
-                            description="[Reverse Image Search (Bing)](" + rl +
-                            ")")
-      embed.set_image(url='https://i.imgur.com/' + vee)
-      await message.channel.send(embed=embed)
 
 
 try:

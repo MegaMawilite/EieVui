@@ -74,7 +74,7 @@ Any idea or issue?
 
 **__`Feedback commands`__**
 ```
-Sends a message of varying importance to the creator.
+Sends feedback to the creator.
 
 /!\ Please only use ~bug for bugs and issues.
 /!\ Please don't spam.
