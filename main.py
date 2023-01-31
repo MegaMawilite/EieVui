@@ -31,6 +31,7 @@ def get_reverselink(vee):
 
 @client.event
 async def on_ready():
+  await client.change_presence(activity=discord.Game('with my ~help command'))
   print('Logged in as {0.user}'.format(client))
 
 
