@@ -37,6 +37,15 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+  # counter cloudfare measures
+  try:
+    asdf = message.content
+    # that part will probably be used for optimisation, though
+  except discord.errors.HTTPException:
+    print("\n\n\nBLOCKED BY RATE LIMITS\nRESTARTING NOW\n\n\n")
+    os.system("python restarter.py")
+    os.system('kill 1')
+
   if message.author == await client.fetch_user(os.environ['MAWS_ID']):
     if message.content == "y" and db["suggclear"] == 1:
       db["sugs"] = "SUGGESTIONS:"
