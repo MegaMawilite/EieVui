@@ -6,7 +6,7 @@ from pics import *
 from vees import *
 from help import *
 from evdays import *
-from keepalive import keep_alive
+from neversleep import awake
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -138,7 +138,7 @@ async def on_message(message):
         await message.channel.send("Feedback sent successfully.")
 
 
-keep_alive()
+awake("https://EieVui.mawilite.repl.co", False)
 
 try:
   client.run(os.environ['MY_TOKEN'])

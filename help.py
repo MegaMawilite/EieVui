@@ -6,9 +6,9 @@ def gethelp(h, first):
   if h == "":  #main
     return (greetings + '''
     
-**__`EieVui V1.0`__**
+**__`EieVui V1.0.1`__**
 ```
-Written by Mawilite#3873. Hosted on Repl.it and UptimeRobot.
+Written by Mawilite#3873. Hosted on Repl.it.
     
 Commands are separated in several categories.
 
